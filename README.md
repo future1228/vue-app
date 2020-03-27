@@ -1,5 +1,4 @@
-# vue-frontend
-
+## Introduction
 ## Project setup
 ```
 npm install
