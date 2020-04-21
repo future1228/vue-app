@@ -21,9 +21,9 @@ const routes = [
     }
   },
   {
-    path: "/news", 
+    path: "/news",
     name: "News",
-    component: function(){
+    component: function() {
       return import(/* webpackChunkName: "about" */ "../views/News.vue");
     }
   }
