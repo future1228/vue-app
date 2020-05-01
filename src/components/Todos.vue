@@ -4,7 +4,6 @@
       <p>Completed Tasks: <span style="color:#ff0000">{{ todos.filter(todo => { return todo.completed === true }).length }}</span></p>
       <p>Pending Tasks: <span style="color:#0000ff">{{ todos.filter(todo => { return todo.completed === false }).length }}</span></p>
     </div>
-    <!-- <div class="row"> -->
       <Todo
         v-bind:key="index" 
         v-for="(todo, index) in todos"
