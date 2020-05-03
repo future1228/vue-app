@@ -1,3 +1,7 @@
+## Introduction
+```
+This app is the sample Todo app using vue/vuex
+
 ## Project setup
 ```
 npm install
