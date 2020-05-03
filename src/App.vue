@@ -5,7 +5,7 @@
       <p>Pending Tasks: <span style="color:#0000ff">{{ todos.filter(todo => { return todo.completed === false }).length }}</span></p>  
     </div>
     <AddTodo />
-    <Todos v-bind:todos="todos" v-on:delete-todo="deleteTodo" />
+    <Todos v-bind:todos="todos" />
   </div>
 </template>
 <script>
@@ -18,34 +18,7 @@ export default {
     Todos,
     AddTodo
   },
-  data() {
-    return {
-  //     todos: [
-  //           {
-  //             id: 1,
-  //             title: "Todo A",
-  //             description : "project A",
-  //             completed: false
-  //           },
-  //           {
-  //             id: 2,
-  //             title: "Todo B",
-  //             description : "project B",
-  //             completed: false
-  //           },
-  //           {
-  //             id: 3,
-  //             title: "Todo C",
-  //             description : "project C",
-  //             completed: false
-  //           }
-  //       ]
-    };
-  },
   methods: {
-    // addTodo(newTodoObj) {
-    //   this.todos = [...this.todos, newTodoObj];
-    // },
     deleteTodo(todo) {
       const todoIndex = this.todos.indexOf(todo);
       this.todos.splice(todoIndex, 1);

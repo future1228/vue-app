@@ -10,11 +10,11 @@
           <div class="card" style="width: 18rem;">
             <div class="card-body">
               <div class="form-group text-center">
-                <label for="exampleInputEmail1">Title</label>
+                <label>Title</label>
                 <input type="text" class="form-control" aria-describedby="emailHelp" v-model="title" placeholder="title">
               </div>
               <div class="form-group text-center">
-                <label for="exampleInputPassword1">Description</label>
+                <label>Description</label>
                 <input type="text" class="form-control" v-model="description" placeholder="description">
               </div>
               <div class="btn-group btn-block" role="group" aria-label="Basic example">
@@ -53,7 +53,6 @@ export default {
         description : this.description,
         completed: false
       };
-      // this.$emit("add-todo", newTodoObj);
       this.$store.dispatch('todoStore/addTodo', newTodoObj);
       this.title = "";
       this.description = "";

@@ -24,17 +24,26 @@ export const todoStore = {
     },
     mutations: {
         addTodo(state, newTodoObj) {
-            // state.todos.push({
-            //     title: newTodoobj.title,
-            //     description: newTodoobj.description,
-            //     completed: newTodoobj.completed
-            // });
-            state.todos = [...this.todos, newTodoObj];
+            state.todos = [...state.todos, newTodoObj];
+        },
+        deleteTodo(state, todo){
+            const todoIndex = state.todos.indexOf(todo);
+            state.todos.splice(todoIndex, 1);
+        },
+        completeTodo(state, todo){
+            const todoIndex = state.todos.indexOf(todo);
+            state.todos[todoIndex].completed = true;
         }
     },
     actions: {
         addTodo({ commit }, newTodoObj) {
             commit('addTodo', newTodoObj)
+        },
+        deleteTodo({ commit }, todo) {
+            commit('deleteTodo', todo)
+        },
+        completeTodo({ commit }, todo) {
+            commit('completeTodo', todo)
         }
     },
     modules: {},

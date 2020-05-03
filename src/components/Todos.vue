@@ -4,8 +4,6 @@
       v-bind:key="index" 
       v-for="(todo, index) in todos"
       v-bind:todo="todo"
-      v-on:delete-todo="$emit('delete-todo', todo)"
-      v-on:complete-todo="completeTodo"
     />
   </div>
 </template>
@@ -17,13 +15,7 @@ export default {
   components: {
     Todo
   },
-  props: ["todos"],
-  methods:{
-    completeTodo(todo) {
-      const todoIndex = this.todos.indexOf(todo);
-      this.todos[todoIndex].completed = true;
-    }
-  }
+  props: ["todos"]
 };
 </script>
 <style scoped>
