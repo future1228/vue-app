@@ -11,11 +11,13 @@
             <div class="card-body">
               <div class="form-group text-center">
                 <label>Title</label>
-                <input type="text" class="form-control" aria-describedby="emailHelp" v-model="title" placeholder="title">
+                <input type="text" class="form-control" aria-describedby="emailHelp" v-model="title" placeholder="title" ref="title">
+                <p v-show="warning">The field is required</p>
               </div>
               <div class="form-group text-center">
                 <label>Description</label>
-                <input type="text" class="form-control" v-model="description" placeholder="description">
+                <input type="text" class="form-control" v-model="description" placeholder="description" required>
+                <p v-show="warning">The field is required</p>
               </div>
               <div class="btn-group btn-block" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-success" v-on:click="addTodo">Create</button>
@@ -35,7 +37,8 @@ export default {
     return {
       title: "",
       description: "",
-      isCreating: false
+      isCreating: false,
+      warning : false
     };
   },
   methods: {
@@ -47,16 +50,27 @@ export default {
     },
     addTodo(e) {
       e.preventDefault();
-      const newTodoObj = {
-        id: uuid.v4(),
-        title: this.title,
-        description : this.description,
-        completed: false
-      };
-      this.$store.dispatch('todoStore/addTodo', newTodoObj);
-      this.title = "";
-      this.description = "";
-      this.isCreating = false;
+      if(this.title.length > 0 && this.description.length > 0)
+      {
+        this.warning = false;
+        const newTodoObj = {
+          id: uuid.v4(),
+          title: this.title,
+          description : this.description,
+          completed: false
+        };
+        this.$store.dispatch('todoStore/addTodo', newTodoObj);
+        this.title = "";
+        this.description = "";
+        this.isCreating = false;
+      }
+      else{
+        this.warning = true;
+        this.focusInput();
+      }
+    },
+    focusInput(){
+      this.$refs.title.focus();
     }
   }
 };
@@ -65,5 +79,9 @@ export default {
 .addtodo{
     display: flex;
     justify-content: center;
+}
+p{
+  float:left;
+  color: #ff0000;
 }
 </style>
