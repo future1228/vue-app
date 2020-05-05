@@ -27,6 +27,8 @@
         <div class="form-group text-center">
             <label>Description</label>
             <input type="text" class="form-control" v-model="todo.description" placeholder="description">
+            <input type="hidden" v-model="todo.completed">
+            <input type="hidden" v-model="todo.id">
         </div>
         <div class="btn-group btn-block" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-primary" v-on:click="updateTodo">Save</button>
@@ -59,6 +61,14 @@ export default {
       this.$store.dispatch('todoStore/completeTodo', todo);
     },
     updateTodo(){
+      const editTodo = {
+        id : this.todo.id,
+        title : this.todo.title,
+        description : this.todo.description,
+        completed : this.todo.completed
+      }
+      this.$store.dispatch('todoStore/updateTodo', editTodo);
+
       this.isEditing = false;
     }
   }

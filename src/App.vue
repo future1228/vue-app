@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="text-center mt-5">
-      <p>Completed Tasks: <span style="color:#ff0000">{{ todos.filter(todo => { return todo.completed === true }).length }}</span></p>
-      <p>Pending Tasks: <span style="color:#0000ff">{{ todos.filter(todo => { return todo.completed === false }).length }}</span></p>  
+      <p>Completed Tasks: <span style="color:#ff0000">{{ todos.filter(todo => { return todo.completed === 1 }).length }}</span></p>
+      <p>Pending Tasks: <span style="color:#0000ff">{{ todos.filter(todo => { return todo.completed === 0 }).length }}</span></p>  
     </div>
     <AddTodo />
     <Todos v-bind:todos="todos" />
@@ -18,16 +18,15 @@ export default {
     Todos,
     AddTodo
   },
-  methods: {
-    deleteTodo(todo) {
-      const todoIndex = this.todos.indexOf(todo);
-      this.todos.splice(todoIndex, 1);
-    }
+  created(){
+    this.$store.dispatch('todoStore/initTodo');
   },
   computed: {
     todos(){
+      
       return this.$store.getters['todoStore/showTodo']
     }
+    
   }
 };
 </script>
