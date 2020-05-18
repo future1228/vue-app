@@ -23,11 +23,8 @@ export default {
   },
   computed: {
     todos(){
-      
       return this.$store.getters['todoStore/showTodo']
     }
-    
   }
 };
 </script>
-<style></style>
